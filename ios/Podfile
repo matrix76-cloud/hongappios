@@ -17,11 +17,25 @@ end
 target 'hongappios' do
   config = use_native_modules!
 
+  use_frameworks! :linkage => :static  # use_frameworks!를 사용해야 함
+  
+  pod 'Firebase/Core'
+  pod 'Firebase/Messaging'
+  
+  pod 'GoogleUtilities', :modular_headers => true
+  pod 'FirebaseCoreInternal', :modular_headers => true
+
+  
   use_react_native!(
     :path => config[:reactNativePath],
     # An absolute path to your application root.
     :app_path => "#{Pod::Config.instance.installation_root}/.."
   )
+
+
+
+
+
 
   post_install do |installer|
     # https://github.com/facebook/react-native/blob/main/packages/react-native/scripts/react_native_pods.rb#L197-L202
